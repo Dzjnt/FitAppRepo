@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\JoinT\\Desktop\\FitAppRepo\\FitApp.DataAccess\\FitApp.DataAccess.csproj": {}
+    "C:\\Users\\JoinT\\Desktop\\RepoFitApp\\FitAppRepo\\FitApp.DataAccess\\FitApp.DataAccess.csproj": {}
   },
   "projects": {
-    "C:\\Users\\JoinT\\Desktop\\FitAppRepo\\FitApp.DataAccess\\FitApp.DataAccess.csproj": {
+    "C:\\Users\\JoinT\\Desktop\\RepoFitApp\\FitAppRepo\\FitApp.DataAccess\\FitApp.DataAccess.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\JoinT\\Desktop\\FitAppRepo\\FitApp.DataAccess\\FitApp.DataAccess.csproj",
+        "projectUniqueName": "C:\\Users\\JoinT\\Desktop\\RepoFitApp\\FitAppRepo\\FitApp.DataAccess\\FitApp.DataAccess.csproj",
         "projectName": "FitApp.DataAccess",
-        "projectPath": "C:\\Users\\JoinT\\Desktop\\FitAppRepo\\FitApp.DataAccess\\FitApp.DataAccess.csproj",
+        "projectPath": "C:\\Users\\JoinT\\Desktop\\RepoFitApp\\FitAppRepo\\FitApp.DataAccess\\FitApp.DataAccess.csproj",
         "packagesPath": "C:\\Users\\JoinT\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\JoinT\\Desktop\\FitAppRepo\\FitApp.DataAccess\\obj\\",
+        "outputPath": "C:\\Users\\JoinT\\Desktop\\RepoFitApp\\FitAppRepo\\FitApp.DataAccess\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
