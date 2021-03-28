@@ -4,14 +4,16 @@ using FitApp.DataAccess;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace FitApp.DataAccess.Migrations
 {
     [DbContext(typeof(FitStorageContext))]
-    partial class FitStorageContextModelSnapshot : ModelSnapshot
+    [Migration("20210328145248_UpdateProductIngredientRecipe")]
+    partial class UpdateProductIngredientRecipe
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -49,10 +51,6 @@ namespace FitApp.DataAccess.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ProductId");
-
-                    b.HasIndex("RecipeId");
-
                     b.ToTable("Ingredients");
                 });
 
@@ -86,6 +84,9 @@ namespace FitApp.DataAccess.Migrations
                     b.Property<DateTime>("EndDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<int?>("IngredientId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
@@ -97,7 +98,9 @@ namespace FitApp.DataAccess.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Products");
+                    b.HasIndex("IngredientId");
+
+                    b.ToTable("Product");
                 });
 
             modelBuilder.Entity("FitApp.DataAccess.Entities.Recipe", b =>
@@ -111,6 +114,9 @@ namespace FitApp.DataAccess.Migrations
                         .IsRequired()
                         .HasMaxLength(255)
                         .HasColumnType("nvarchar(255)");
+
+                    b.Property<int?>("IngredientId")
+                        .HasColumnType("int");
 
                     b.Property<int>("Kcal")
                         .HasColumnType("int");
@@ -126,10 +132,17 @@ namespace FitApp.DataAccess.Migrations
                     b.Property<TimeSpan>("PreparationTime")
                         .HasColumnType("time");
 
+                    b.Property<int?>("ProductId")
+                        .HasColumnType("int");
+
                     b.Property<int>("UserId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("IngredientId");
+
+                    b.HasIndex("ProductId");
 
                     b.HasIndex("UserId");
 
@@ -213,21 +226,6 @@ namespace FitApp.DataAccess.Migrations
                     b.ToTable("MenuRecipe");
                 });
 
-            modelBuilder.Entity("FitApp.DataAccess.Entities.Ingredient", b =>
-                {
-                    b.HasOne("FitApp.DataAccess.Entities.Product", null)
-                        .WithMany("Ingredients")
-                        .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("FitApp.DataAccess.Entities.Recipe", null)
-                        .WithMany("Ingredients")
-                        .HasForeignKey("RecipeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
             modelBuilder.Entity("FitApp.DataAccess.Entities.Menu", b =>
                 {
                     b.HasOne("FitApp.DataAccess.Entities.User", null)
@@ -237,8 +235,23 @@ namespace FitApp.DataAccess.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("FitApp.DataAccess.Entities.Product", b =>
+                {
+                    b.HasOne("FitApp.DataAccess.Entities.Ingredient", null)
+                        .WithMany("Products")
+                        .HasForeignKey("IngredientId");
+                });
+
             modelBuilder.Entity("FitApp.DataAccess.Entities.Recipe", b =>
                 {
+                    b.HasOne("FitApp.DataAccess.Entities.Ingredient", null)
+                        .WithMany("Recipes")
+                        .HasForeignKey("IngredientId");
+
+                    b.HasOne("FitApp.DataAccess.Entities.Product", null)
+                        .WithMany("Recipes")
+                        .HasForeignKey("ProductId");
+
                     b.HasOne("FitApp.DataAccess.Entities.User", null)
                         .WithMany("Recipes")
                         .HasForeignKey("UserId")
@@ -270,14 +283,16 @@ namespace FitApp.DataAccess.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("FitApp.DataAccess.Entities.Product", b =>
+            modelBuilder.Entity("FitApp.DataAccess.Entities.Ingredient", b =>
                 {
-                    b.Navigation("Ingredients");
+                    b.Navigation("Products");
+
+                    b.Navigation("Recipes");
                 });
 
-            modelBuilder.Entity("FitApp.DataAccess.Entities.Recipe", b =>
+            modelBuilder.Entity("FitApp.DataAccess.Entities.Product", b =>
                 {
-                    b.Navigation("Ingredients");
+                    b.Navigation("Recipes");
                 });
 
             modelBuilder.Entity("FitApp.DataAccess.Entities.User", b =>

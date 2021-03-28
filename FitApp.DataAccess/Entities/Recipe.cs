@@ -11,6 +11,7 @@ namespace FitApp.DataAccess.Entities
     {
         public int? MenuId { get; set; }
         public List<Menu> Menus { get; set; }
+        public List<Ingredient> Ingredients { get; set; }
         public int UserId { get; set; }
         [Required]
         [MaxLength(100)]

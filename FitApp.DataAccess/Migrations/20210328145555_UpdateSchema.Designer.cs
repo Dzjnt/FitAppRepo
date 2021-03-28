@@ -4,14 +4,16 @@ using FitApp.DataAccess;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace FitApp.DataAccess.Migrations
 {
     [DbContext(typeof(FitStorageContext))]
-    partial class FitStorageContextModelSnapshot : ModelSnapshot
+    [Migration("20210328145555_UpdateSchema")]
+    partial class UpdateSchema
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -49,8 +51,6 @@ namespace FitApp.DataAccess.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ProductId");
-
                     b.HasIndex("RecipeId");
 
                     b.ToTable("Ingredients");
@@ -71,33 +71,6 @@ namespace FitApp.DataAccess.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("Menus");
-                });
-
-            modelBuilder.Entity("FitApp.DataAccess.Entities.Product", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("Capacity")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("EndDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<decimal>("Price")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<string>("Source")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Products");
                 });
 
             modelBuilder.Entity("FitApp.DataAccess.Entities.Recipe", b =>
@@ -215,12 +188,6 @@ namespace FitApp.DataAccess.Migrations
 
             modelBuilder.Entity("FitApp.DataAccess.Entities.Ingredient", b =>
                 {
-                    b.HasOne("FitApp.DataAccess.Entities.Product", null)
-                        .WithMany("Ingredients")
-                        .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("FitApp.DataAccess.Entities.Recipe", null)
                         .WithMany("Ingredients")
                         .HasForeignKey("RecipeId")
@@ -268,11 +235,6 @@ namespace FitApp.DataAccess.Migrations
                         .HasForeignKey("RecipesId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("FitApp.DataAccess.Entities.Product", b =>
-                {
-                    b.Navigation("Ingredients");
                 });
 
             modelBuilder.Entity("FitApp.DataAccess.Entities.Recipe", b =>

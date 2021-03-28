@@ -21,6 +21,7 @@ namespace FitApp.DataAccess
         public DbSet<SharedMenu> SharedMenus { get; set; }
         public DbSet<Stat> Stats { get; set; }
         public DbSet<Ingredient> Ingredients { get; set; }
+        public DbSet<Product> Products { get; set; }
      
     }
 }
