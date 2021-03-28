@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FitApp.DataAccess.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,9 +7,13 @@ using System.Threading.Tasks;
 
 namespace FitApp.DataAccess
 {
-    public interface IRepository<T>
+    public interface IRepository<T> where T : EntityBase
     {
         IEnumerable<T> GetAll();
-        T Get(object obj);
+        T GetById(int id);
+        void Insert(T entity);
+        void Update(T entity);
+        void Delete(int id);
+
     }
 }
