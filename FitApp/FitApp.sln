@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FitApp", "FitApp.csproj", "
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FitApp.DataAccess", "..\FitApp.DataAccess\FitApp.DataAccess.csproj", "{3A723B4E-D643-4A05-907E-59A1732A062E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FitApp.ApplicationServices", "..\FitApp.ApplicationServices\FitApp.ApplicationServices.csproj", "{7BBDB304-0BFF-4600-97CE-0C43FCD8B475}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{3A723B4E-D643-4A05-907E-59A1732A062E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3A723B4E-D643-4A05-907E-59A1732A062E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3A723B4E-D643-4A05-907E-59A1732A062E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7BBDB304-0BFF-4600-97CE-0C43FCD8B475}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7BBDB304-0BFF-4600-97CE-0C43FCD8B475}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7BBDB304-0BFF-4600-97CE-0C43FCD8B475}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7BBDB304-0BFF-4600-97CE-0C43FCD8B475}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

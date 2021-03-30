@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "dgSpecHash": "YCL7IUGV0bbLsuSEtU6mcVqoRCa9B4EtP7D8Rif8TGSfGEbcn+nLISSt5091Zn94bJMuQHmNxyhDBMXs35w6nQ==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\JoinT\\Desktop\\RepoFitApp\\FitAppRepo\\FitApp.ApplicationServices\\FitApp.ApplicationServices.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\JoinT\\.nuget\\packages\\mediatr\\9.0.0\\mediatr.9.0.0.nupkg.sha512",
+    "C:\\Users\\JoinT\\.nuget\\packages\\mediatr.extensions.microsoft.dependencyinjection\\9.0.0\\mediatr.extensions.microsoft.dependencyinjection.9.0.0.nupkg.sha512",
+    "C:\\Users\\JoinT\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\2.0.0\\microsoft.extensions.dependencyinjection.abstractions.2.0.0.nupkg.sha512"
+  ],
+  "logs": []
+}
