@@ -15,6 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\FitApp.ApplicationServices\FitApp.ApplicationServices.csproj" />
     <ProjectReference Include="..\FitApp.DataAccess\FitApp.DataAccess.csproj" />
   </ItemGroup>
 

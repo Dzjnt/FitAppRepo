@@ -1,4 +1,6 @@
+using FitApp.ApplicationServices.API.Domain;
 using FitApp.DataAccess;
+using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -28,6 +30,7 @@ namespace FitApp
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddMediatR(typeof(ResponseBase<>));
             services.AddScoped(typeof(IRepository<>),typeof(Repository<>));
             services.AddDbContext<FitStorageContext>(
                 opt => opt.UseSqlServer(this.Configuration.GetConnectionString("FitStorageDatabaseConnection")));

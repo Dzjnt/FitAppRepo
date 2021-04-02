@@ -11,10 +11,10 @@ namespace FitApp.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class RecipeController : ControllerBase
+    public class RecipesController : ControllerBase
     {
         private readonly IRepository<Recipe> _recipeRepository;
-        public RecipeController(IRepository<Recipe> recipeRepository)
+        public RecipesController(IRepository<Recipe> recipeRepository)
         {
             _recipeRepository = recipeRepository;
         }
