@@ -39,6 +39,13 @@ namespace FitApp
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "FitApp", Version = "v1" });
             });
+            services.AddCors(opt =>
+            {
+                opt.AddPolicy("CorsPolicy", policy =>
+                {
+                    policy.AllowAnyMethod().AllowAnyHeader().WithOrigins("http://localhost:3000");
+                });
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
