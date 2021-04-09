@@ -60,6 +60,8 @@ namespace FitApp
 
             app.UseHttpsRedirection();
 
+            app.UseCors("CorsPolicy");
+
             app.UseRouting();
 
             app.UseAuthorization();
