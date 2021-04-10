@@ -26,5 +26,26 @@ namespace FitApp.Controllers
             var response = await _mediator.Send(request);
             return Ok(response);
         }
+        [HttpPost]
+        [Route("")]
+        public async Task<IActionResult> AddMenu([FromQuery] GetMenusRequest request)
+        {
+            var response = await _mediator.Send(request);
+            return Ok(response);
+        }
+        [HttpPut]
+        [Route("")]
+        public async Task<IActionResult> UpdateMenu([FromQuery] GetMenusRequest request)
+        {
+            var response = await _mediator.Send(request);
+            return Ok(response);
+        }
+        [HttpDelete]
+        [Route("")]
+        public async Task<IActionResult> DeleteMenu([FromQuery] GetMenusRequest request)
+        {
+            var response = await _mediator.Send(request);
+            return Ok(response);
+        }
     }
 }
