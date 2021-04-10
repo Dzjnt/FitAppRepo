@@ -1,4 +1,5 @@
-﻿using FitApp.DataAccess;
+﻿using AutoMapper;
+using FitApp.DataAccess;
 using MediatR;
 using System;
 using System.Collections.Generic;
@@ -12,23 +13,20 @@ namespace FitApp.ApplicationServices.API.Handlers
     public class GetMenusHandler : IRequestHandler<GetMenusRequest, GetMenusResponse>
     {
         private readonly IRepository<FitApp.DataAccess.Entities.Menu> _menuRepository;
-        public GetMenusHandler(IRepository<FitApp.DataAccess.Entities.Menu> menuRepository)
+        private readonly IMapper _mapper;
+        public GetMenusHandler(IRepository<FitApp.DataAccess.Entities.Menu> menuRepository, IMapper mapper)
         {
             _menuRepository = menuRepository;
+            _mapper = mapper;
         }
         public Task<GetMenusResponse> Handle(GetMenusRequest request, CancellationToken cancellationToken)
         {
             var menus = _menuRepository.GetAll();
-            var domainMenus = menus.Select(m => new Domain.Models.Menu()
-            {
-                Id = m.Id,
-                UserId = m.UserId
-
-            });
-
+            var mappedMenus = _mapper.Map<List<Domain.Models.Menu>>(menus);
+     
             var response = new GetMenusResponse()
             {
-                Data = domainMenus.ToList()
+                Data = mappedMenus
             };
             
             return Task.FromResult(response);

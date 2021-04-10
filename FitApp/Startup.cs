@@ -1,4 +1,5 @@
 using FitApp.ApplicationServices.API.Domain;
+using FitApp.ApplicationServices.Mappings;
 using FitApp.DataAccess;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
@@ -30,11 +31,17 @@ namespace FitApp
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddAutoMapper(typeof(MenusProfile).Assembly);
+
             services.AddMediatR(typeof(ResponseBase<>));
+
             services.AddScoped(typeof(IRepository<>),typeof(Repository<>));
+
             services.AddDbContext<FitStorageContext>(
                 opt => opt.UseSqlServer(this.Configuration.GetConnectionString("FitStorageDatabaseConnection")));
+
             services.AddControllers();
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "FitApp", Version = "v1" });

@@ -18,21 +18,23 @@ namespace FitApp.DataAccess
             _context = context;
             _entities = _context.Set<T>();
         }
-        public IEnumerable<T> GetAll() => _entities.AsEnumerable();
+        public Task<List<T>> GetAll() => _entities.ToListAsync();
 
-        public T GetById(int id) => _entities.SingleOrDefault(s => s.Id == id);
+        public Task<T> GetById(int id) => _entities.SingleOrDefaultAsync(s => s.Id == id);
 
-        public void Insert(T entity)
+        public Task Insert(T entity)
         {
             if (entity == null)
             {
                 throw new ArgumentException("Entity cannot be null");
             }
             _entities.Add(entity);
-            _context.SaveChanges();
+
+
+            return _context.SaveChangesAsync();
 
         }          
-        public void Update(T entity)
+        public Task Update(T entity)
         {
 
             if (entity == null)
@@ -41,14 +43,16 @@ namespace FitApp.DataAccess
             }
 
             _context.Update(entity);
-            _context.SaveChanges();
+
+            return _context.SaveChangesAsync();
 
         }
-        public void Delete(int id)
+        public Task Delete(int id)
         {
             T entity = _entities.SingleOrDefault(s => s.Id == id);
             _entities.Remove(entity);
-            _context.SaveChanges();
+
+            return _context.SaveChangesAsync();
         }
 
     }
