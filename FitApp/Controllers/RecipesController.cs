@@ -18,13 +18,14 @@ namespace FitApp.Controllers
         {
             _recipeRepository = recipeRepository;
         }
+   
         [HttpGet]
         [Route("")]
-        public IEnumerable<Recipe> GetRecipes() => _recipeRepository.GetAll();
+        public  async Task<IEnumerable<Recipe>> GetRecipes() =>  await  _recipeRepository.GetAll();
 
         [HttpGet]
         [Route("{id}")]
-        public Recipe GetRecipe(int id) => _recipeRepository.GetById(id);
+        public async Task<Recipe> GetRecipe(int id) => await _recipeRepository.GetById(id);
 
 
     }

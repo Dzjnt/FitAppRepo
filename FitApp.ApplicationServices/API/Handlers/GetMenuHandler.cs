@@ -21,18 +21,18 @@ namespace FitApp.ApplicationServices.API.Handlers
             _menuRepository = menuRepository;
             _mapper = mapper;
         }
-        public Task<GetMenuResponse> Handle(GetMenuRequest request, CancellationToken cancellationToken)
+        public async Task<GetMenuResponse> Handle(GetMenuRequest request, CancellationToken cancellationToken)
         {
-            var menu = _menuRepository.GetById(request.Id);
-            var menuMapped = _mapper.Map<Domain.Models.Menu>(menu);
+            var menu = await _menuRepository.GetById(request.Id);
+            var mappedMenu =  _mapper.Map<Domain.Models.Menu>(menu);
 
             var response = new GetMenuResponse()
             {
-                Data = menuMapped 
+                Data = mappedMenu
 
             };
 
-            return Task.FromResult(response);
+            return response;
         }
     }
 }

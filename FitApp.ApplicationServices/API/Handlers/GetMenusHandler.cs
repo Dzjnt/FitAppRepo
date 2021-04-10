@@ -19,9 +19,9 @@ namespace FitApp.ApplicationServices.API.Handlers
             _menuRepository = menuRepository;
             _mapper = mapper;
         }
-        public Task<GetMenusResponse> Handle(GetMenusRequest request, CancellationToken cancellationToken)
+        public async Task<GetMenusResponse> Handle(GetMenusRequest request, CancellationToken cancellationToken)
         {
-            var menus = _menuRepository.GetAll();
+            var menus = await _menuRepository.GetAll();
             var mappedMenus = _mapper.Map<List<Domain.Models.Menu>>(menus);
      
             var response = new GetMenusResponse()
@@ -29,7 +29,7 @@ namespace FitApp.ApplicationServices.API.Handlers
                 Data = mappedMenus
             };
             
-            return Task.FromResult(response);
+            return response;
         }
     }
 
