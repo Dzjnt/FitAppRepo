@@ -2,6 +2,7 @@
 using FitApp.ApplicationServices.API.Domain;
 using FitApp.ApplicationServices.API.Domain.Models;
 using FitApp.DataAccess;
+using FitApp.DataAccess.CQRS.Queries;
 using MediatR;
 using System;
 using System.Collections.Generic;
@@ -14,16 +15,20 @@ namespace FitApp.ApplicationServices.API.Handlers
 {
     public class GetMenuHandler : IRequestHandler<GetMenuRequest, GetMenuResponse>
     {
-        private readonly IRepository<FitApp.DataAccess.Entities.Menu> _menuRepository;
+        private readonly IQueryExecutor _queryExecutor;
         private readonly IMapper _mapper;
-        public GetMenuHandler(IRepository<FitApp.DataAccess.Entities.Menu> menuRepository, IMapper mapper)
+        public GetMenuHandler(IMapper mapper, IQueryExecutor queryExecutor)
         {
-            _menuRepository = menuRepository;
+            _queryExecutor = queryExecutor;
             _mapper = mapper;
         }
         public async Task<GetMenuResponse> Handle(GetMenuRequest request, CancellationToken cancellationToken)
         {
-            var menu = await _menuRepository.GetById(request.Id);
+            var query = new GetMenuQuery
+            {
+                Id = request.Id
+            };
+            var menu = await _queryExecutor.Execute(query);
             var mappedMenu =  _mapper.Map<Domain.Models.Menu>(menu);
 
             var response = new GetMenuResponse()

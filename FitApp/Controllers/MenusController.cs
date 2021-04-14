@@ -1,4 +1,5 @@
 ﻿using FitApp.ApplicationServices.API;
+using FitApp.ApplicationServices.API.Domain;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -26,6 +27,7 @@ namespace FitApp.Controllers
             var response = await _mediator.Send(request);
             return Ok(response);
         }
+    
         [HttpPost]
         [Route("")]
         public async Task<IActionResult> AddMenu([FromQuery] GetMenusRequest request)
