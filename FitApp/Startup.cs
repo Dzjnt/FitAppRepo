@@ -1,6 +1,7 @@
 using FitApp.ApplicationServices.API.Domain;
 using FitApp.ApplicationServices.Mappings;
 using FitApp.DataAccess;
+using FitApp.DataAccess.CQRS;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -32,6 +33,7 @@ namespace FitApp
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddTransient<IQueryExecutor, QueryExecutor>();
+            services.AddTransient<ICommandExecutor, CommandExecutor>();
 
             services.AddAutoMapper(typeof(MenusProfile).Assembly);
 
