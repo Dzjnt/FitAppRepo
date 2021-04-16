@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FitApp.DataAccess.CQRS
+namespace FitApp.DataAccess
 {
     public class CommandExecutor : ICommandExecutor
     {
@@ -15,9 +15,12 @@ namespace FitApp.DataAccess.CQRS
             _fitStorageContext = fitStorageContext;
         }
 
-        Task<TResult> ICommandExecutor.CommandExecutor<TParameters, TResult>(CommandBase<TParameters, TResult> command)
+        Task<TResult> ICommandExecutor.Executor<TParameters, TResult>(CommandBase<TParameters, TResult> command)
         {
             return command.Execute(_fitStorageContext);
         }
+
+
+  
     }
 }

@@ -30,7 +30,7 @@ namespace FitApp.Controllers
     
         [HttpPost]
         [Route("")]
-        public async Task<IActionResult> AddMenu([FromQuery] GetMenusRequest request)
+        public async Task<IActionResult> AddMenu([FromBody] AddMenuRequest request)
         {
             var response = await _mediator.Send(request);
             return Ok(response);

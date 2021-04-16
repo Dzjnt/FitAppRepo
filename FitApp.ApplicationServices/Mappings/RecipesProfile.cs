@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace FitApp.ApplicationServices.Mappings
 {
-    class RecipesProfile
+    public class RecipesProfile
     {
+       public RecipesProfile()
+        {
+
+        }
     }
 }
