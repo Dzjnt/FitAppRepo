@@ -36,7 +36,7 @@ namespace FitApp
             services.AddTransient<ICommandExecutor, CommandExecutor>();
 
             services.AddAutoMapper(typeof(MenusProfile).Assembly);
-
+            services.AddAutoMapper(typeof(RecipesProfile).Assembly);
             services.AddMediatR(typeof(ResponseBase<>));
 
             services.AddScoped(typeof(IRepository<>),typeof(Repository<>));

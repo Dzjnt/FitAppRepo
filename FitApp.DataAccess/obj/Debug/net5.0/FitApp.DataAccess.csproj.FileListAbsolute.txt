@@ -42,3 +42,4 @@ C:\Users\JoinT\Desktop\RepoFitApp\FitAppRepo\FitApp.DataAccess\obj\Debug\net5.0\
 C:\Users\JoinT\Desktop\RepoFitApp\FitAppRepo\FitApp.DataAccess\obj\Debug\net5.0\ref\FitApp.DataAccess.dll
 C:\Users\JoinT\Desktop\RepoFitApp\FitAppRepo\FitApp.DataAccess\obj\Debug\net5.0\FitApp.DataAccess.pdb
 C:\Users\JoinT\Desktop\RepoFitApp\FitAppRepo\FitApp.DataAccess\obj\Debug\net5.0\FitApp.DataAccess.genruntimeconfig.cache
+C:\Users\JoinT\Desktop\RepoFitApp\FitAppRepo\FitApp.DataAccess\obj\Debug\net5.0\FitApp.DataAccess.csprojAssemblyReference.cache

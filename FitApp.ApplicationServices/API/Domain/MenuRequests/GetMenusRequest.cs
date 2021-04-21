@@ -10,5 +10,7 @@ namespace FitApp.ApplicationServices.API
     public class GetMenusRequest : IRequest<GetMenusResponse>
     {
         public int Id { get; set; }
+        
+        public string Name { get; set; }
     }
 }

@@ -9,6 +9,8 @@ namespace FitApp.ApplicationServices.API.Domain
 {
     public class GetRecipesRequest : IRequest<GetRecipesResponse>
     {
+        public int Id { get; set; }
 
+        public string Name { get; set; }
     }
 }
