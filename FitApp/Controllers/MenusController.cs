@@ -1,5 +1,6 @@
 ﻿using FitApp.ApplicationServices.API;
 using FitApp.ApplicationServices.API.Domain;
+using FitApp.ApplicationServices.API.Domain.MenuRequests;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -43,9 +44,13 @@ namespace FitApp.Controllers
             return Ok(response);
         }
         [HttpDelete]
-        [Route("")]
-        public async Task<IActionResult> DeleteMenu([FromQuery] GetMenusRequest request)
+        [Route("menuId")]
+        public async Task<IActionResult> DeleteMenu([FromQuery] int menuId)
         {
+            var request = new DeleteMenuRequest()
+            {
+                Number = menuId
+            };
             var response = await _mediator.Send(request);
             return Ok(response);
         }

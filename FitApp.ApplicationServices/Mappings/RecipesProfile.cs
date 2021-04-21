@@ -15,7 +15,11 @@ namespace FitApp.ApplicationServices.Mappings
         {
             this.CreateMap<DataAccess.Entities.Recipe, Recipe>()
                 .ForMember(x => x.Id, y => y.MapFrom(z => z.Id))
-                .ForMember(m => m.Name, y => y.MapFrom(z => z.Name));
+                .ForMember(m => m.Name, y => y.MapFrom(z => z.Name))
+                .ForMember(m => m.Kcal, y => y.MapFrom(z => z.Kcal))
+                .ForMember(m => m.Description, y => y.MapFrom(z => z.Description))
+                .ForMember(m => m.PreparationTime, y => y.MapFrom(z => z.PreparationTime)
+                );
 
         }
     }
