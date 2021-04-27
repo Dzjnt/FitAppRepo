@@ -1,7 +1,9 @@
 using FitApp.ApplicationServices.API.Domain;
+using FitApp.ApplicationServices.API.Validators;
 using FitApp.ApplicationServices.Mappings;
 using FitApp.DataAccess;
 using FitApp.DataAccess.CQRS;
+using FluentValidation.AspNetCore;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -32,11 +34,15 @@ namespace FitApp
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddMvcCore()
+                .AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<AddMenuRequestValidator>());
+
             services.AddTransient<IQueryExecutor, QueryExecutor>();
             services.AddTransient<ICommandExecutor, CommandExecutor>();
 
             services.AddAutoMapper(typeof(MenusProfile).Assembly);
             services.AddAutoMapper(typeof(RecipesProfile).Assembly);
+
             services.AddMediatR(typeof(ResponseBase<>));
 
             services.AddScoped(typeof(IRepository<>),typeof(Repository<>));
