@@ -13,28 +13,25 @@ namespace FitApp.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class MenusController : ControllerBase
+    public class MenusController : ApiControllerBase
     {
-        private readonly IMediator _mediator;
-        public MenusController(IMediator mediator)
+
+        public MenusController(IMediator mediator) : base(mediator)
         {
-            _mediator = mediator;
         }
 
         [HttpGet]
         [Route("")]
         public async Task<IActionResult> GetMenus([FromQuery] GetMenusRequest request)
         {
-            var response = await _mediator.Send(request);
-            return Ok(response);
+            return await this.HandleRequest<GetMenusRequest, GetMenusResponse>(request);
         }
     
         [HttpPost]
         [Route("")]
         public async Task<IActionResult> AddMenu([FromBody] AddMenuRequest request)
         {
-            var response = await _mediator.Send(request);
-            return Ok(response);
+            return await this.HandleRequest<AddMenuRequest, AddMenuResponse>(request);  
         }
         [HttpPut]
         [Route("")]
