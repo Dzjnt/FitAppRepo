@@ -3,6 +3,8 @@ using MediatR;
 using FitApp.ApplicationServices.API.Domain;
 using System.Threading.Tasks;
 using System.Linq;
+using System.Net;
+using FitApp.ApplicationServices.API.ErrorHandling;
 
 namespace FitApp.Controllers
 {
@@ -35,6 +37,32 @@ namespace FitApp.Controllers
             }
 
             return Ok(response);
+        }
+
+        private IActionResult ErrorResponse(ErrorModel errorModel)
+        {
+            var httpCode = GetHttpStatusCode(errorModel.Error);
+            return StatusCode((int)httpCode, errorModel);
+        }
+        private static HttpStatusCode GetHttpStatusCode(string errorType) 
+        {
+            switch (errorType)
+            {
+                case ErrorType.NotFound:
+                    return HttpStatusCode.NotFound;
+                case ErrorType.InternalServerError:
+                    return HttpStatusCode.InternalServerError;
+                case ErrorType.Unauthorized:
+                    return HttpStatusCode.Unauthorized;
+                case ErrorType.RequestTooLarge:
+                    return HttpStatusCode.RequestEntityTooLarge;
+                case ErrorType.UnsupportedMediaType:
+                    return HttpStatusCode.UnsupportedMediaType;
+                case ErrorType.TooManyRequests:
+                    return HttpStatusCode.TooManyRequests;
+                default:
+                    return HttpStatusCode.BadRequest;
+            }
         }
     }
 }
