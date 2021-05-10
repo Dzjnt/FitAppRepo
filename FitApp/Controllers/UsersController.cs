@@ -31,5 +31,12 @@ namespace FitApp.Controllers
         {
             return this.HandleRequest<GetUsersRequest, GetUsersResponse>(request);
         }
+
+        [HttpGet]
+        [Route("")]
+        public Task<IActionResult> CreateUser([FromBody] CreateUserRequest request)
+        {
+            return this.HandleRequest<CreateUserRequest, CreateUserResponse>(request);
+        }
     }
 }
