@@ -1,5 +1,7 @@
-﻿using FitApp.ApplicationServices.API.Domain;
+﻿using FitApp.ApplicationServices.API.Domain.UserRequests;
+using FitApp.ApplicationServices.API.Domain.UserResponses;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -10,13 +12,14 @@ using System.Threading.Tasks;
 
 namespace FitApp.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
-    public class ProductsController : ControllerBase
+    public class UsersController : ApiControllerBase
     {
         private readonly IMediator _mediator;
         private readonly ILogger<ProductsController> _logger;
-        public ProductsController(IMediator mediator, ILogger<ProductsController> logger)
+        public UsersController(IMediator mediator, ILogger<ProductsController> logger) : base(mediator)
         {
             _mediator = mediator;
             _logger.LogInformation("Entered controller");
@@ -24,10 +27,9 @@ namespace FitApp.Controllers
 
         [HttpGet]
         [Route("")]
-        public async Task<IActionResult> GetMenus([FromQuery] GetProductsRequest request)
+        public Task<IActionResult> GetAll([FromQuery] GetUsersRequest request)
         {
-            var response = await _mediator.Send(request);
-            return Ok(response);
+            return this.HandleRequest<GetUsersRequest, GetUsersResponse>(request);
         }
     }
 }
