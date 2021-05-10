@@ -13,7 +13,7 @@ namespace FitApp.DataAccess
         public FitStorageContext CreateDbContext(string[] args)
         {
             var optionsBuilder = new DbContextOptionsBuilder<FitStorageContext>();
-            optionsBuilder.UseSqlServer("Data Source=.\\SQLEXPRESS;Initial Catalog=FitStorage;Integrated Security=True");
+            optionsBuilder.UseSqlServer("Server=tcp:fit-app.database.windows.net,1433;Initial Catalog=FitAppStorage;Persist Security Info=False;User ID=mbojda;Password=cwks1905#;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;");
             return new FitStorageContext(optionsBuilder.Options);
         }
     }

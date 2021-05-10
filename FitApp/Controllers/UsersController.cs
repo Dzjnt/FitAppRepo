@@ -32,6 +32,7 @@ namespace FitApp.Controllers
             return this.HandleRequest<GetUsersRequest, GetUsersResponse>(request);
         }
 
+        [AllowAnonymous]
         [HttpGet]
         [Route("")]
         public Task<IActionResult> CreateUser([FromBody] CreateUserRequest request)
